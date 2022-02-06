@@ -1,5 +1,14 @@
 body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 22px;
+    color: #121212;
     margin: 0;
     padding: 0;
     background-color: aliceblue;
+}
+
+.main {
+    width: 100%;
+    margin: 50px auto 80px;
+    padding: 0 10px;
 }
