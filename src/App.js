@@ -2,6 +2,9 @@ import './App.css';
 import Header from './components/Header';
 import Headline from './components/Headline';
 import './app.scss';
+import SharedButton from './components/Button';
+import { fetchPosts } from './actions'
+
 const temp = [
   {
     firstName: 'Trung',
@@ -13,14 +16,32 @@ const temp = [
 ]
 
 
-function App() {
+function App(props) {
+  const fetchData = () => {
+    props.fetchPosts()
+  }
+
+  const configButton = {
+    buttonText: 'Get Posts',
+    emitEvent: fetchData
+  }
+
   return (
     <div className="App">
       <Header />
       <section className='main'>
-        <Headline header="My header" desc="This is headline" tempArr={temp}/></section>
+        <Headline header="My header" desc="This is headline" tempArr={temp}/>
+        <SharedButton {...configButton} />
+      </section>
     </div>
   );
 }
 
-export default App;
+
+const mapStateToProps = state => {
+  return {
+    posts: state.posts
+  }
+}
+
+export default connect(mapStateToProps, { fetchPosts }) (App);
