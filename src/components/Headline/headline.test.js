@@ -45,7 +45,7 @@ describe('Headline Component', () => {
         it('Should not render', async () => {
             const component = await findByTestAttr(wrapper, 'headlineComponent')
             expect(component.length).toBe(0)
-         })
+        })
     })
 
     describe('Checking prop types', () => {

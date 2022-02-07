@@ -30,13 +30,13 @@ describe('ListItem Component', () => {
             expect(component.length).toBe(1)
         })
 
-        it ('Should render a title', () => {
-            const title = findByTestAttr(wrapper, 'listItemTitleComponent')
+        it ('Should render a title', async () => {
+            const title = await findByTestAttr(wrapper, 'listItemTitleComponent')
             expect(title.length).toBe(1)
         })
 
-        it ('Should render a desc', () => {
-            const desc = findByTestAttr(wrapper, 'listItemDescComponent')
+        it ('Should render a desc', async () => {
+            const desc = await findByTestAttr(wrapper, 'listItemDescComponent')
             expect(desc.length).toBe(1)
         })
 
@@ -50,12 +50,10 @@ describe('ListItem Component', () => {
                 wrapper = shallow(<ListItem {...props} />)
             })
 
-            it('Component is not rendered', () => {
-                const component = findByTestAttr(wrapper, 'listItemComponent')
-                expect(component.length).toBe(1)
-
+            it('Component is not rendered', async () => {
+                const component = await findByTestAttr(wrapper, 'listItemComponent')
+                expect(component.length).toBe(0)
             })
-    
         })
     })
 })

@@ -4,6 +4,8 @@ import Headline from './components/Headline';
 import './app.scss';
 import SharedButton from './components/Button';
 import { fetchPosts } from './actions'
+import { connect } from 'react-redux'
+import ListItem from './components/ListItem';
 
 const temp = [
   {
@@ -23,7 +25,7 @@ function App(props) {
 
   const configButton = {
     buttonText: 'Get Posts',
-    emitEvent: fetchData
+    emitEvent: () => fetchData()
   }
 
   return (
@@ -32,6 +34,21 @@ function App(props) {
       <section className='main'>
         <Headline header="My header" desc="This is headline" tempArr={temp}/>
         <SharedButton {...configButton} />
+        {
+          props.posts && props.posts.length > 0 &&
+            <div>
+              { props.posts.map((post, index) => {
+                const { title, body } = post
+                const configItem = {
+                  title,
+                  desc: body
+                }
+                return (
+                  <ListItem {...configItem} key={index}/>
+                )
+              })}
+            </div>
+        }
       </section>
     </div>
   );
@@ -44,4 +61,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchPosts }) (App);
+export default connect(mapStateToProps, { fetchPosts })(App);
