@@ -29,7 +29,7 @@ function App(props) {
   }
 
   return (
-    <div className="App">
+    <div className="App" data-test="appComponent">
       <Header />
       <section className='main'>
         <Headline header="My header" desc="This is headline" tempArr={temp}/>
